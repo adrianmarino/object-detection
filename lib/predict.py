@@ -34,16 +34,24 @@ from lib.tf_od_api.research.object_detection.utils import visualization_utils as
 
 # What model to download.
 
-print('\n\nModels:')
+print('\n\nSSD Models:')
 print('- ssd_mobilenet_v1_coco_11_06_2017')
 print('- ssd_mobilenet_v1_fpn_shared_box_predictor_640x640_coco14_sync_2018_07_03')
 print('- ssd_inception_v2_coco_2018_01_28')
+print('- ssd_resnet50_v1_fpn_shared_box_predictor_640x640_coco14_sync_2018_07_03')
+print('\n\n')
+print('Faster RCNN Models:')
 print('- faster_rcnn_nas_coco_2018_01_28')
 print('- faster_rcnn_inception_resnet_v2_atrous_coco_2018_01_28')
 print('- faster_rcnn_resnet101_fgvc_2018_07_19')
-print('- ssd_resnet50_v1_fpn_shared_box_predictor_640x640_coco14_sync_2018_07_03\n\n')
+print('- faster_rcnn_resnet50_coco_2018_01_28')
+print('\n\n')
+print('Mask RCNN Models:')
+print('- mask_rcnn_inception_resnet_v2_atrous_coco_2018_01_28')
+print('\n\n')
 
-DEFAULT_MODEL_NAME = 'ssd_mobilenet_v1_fpn_shared_box_predictor_640x640_coco14_sync_2018_07_03'
+
+DEFAULT_MODEL_NAME = 'faster_rcnn_inception_resnet_v2_atrous_coco_2018_01_28'
 
 if len(sys.argv) > 1 and len(sys.argv[1]) > 0:
     MODEL_NAME = str(sys.argv[1])
@@ -164,8 +172,8 @@ with detection_graph.as_default():
                 category_index,
                 use_normalized_coordinates=True,
                 line_thickness=1,
-                max_boxes_to_draw=50,
-                min_score_thresh=.5
+                max_boxes_to_draw=30,
+                min_score_thresh=.45
             )
 
             cv2.imshow('object detection', cv2.resize(image_np, (1280, 720)))
