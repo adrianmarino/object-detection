@@ -1,0 +1,23 @@
+name: tensorflow-object-detector
+channels:
+- https://conda.anaconda.org/menpo
+- defaults
+- conda-forge
+- anaconda
+dependencies:
+    - python=3.7
+    - Cython
+    - contextlib2
+    - pillow
+    - lxml
+    - matplotlib
+    - numpy
+    - protobuf
+    - pycocotools
+    - cudatoolkit=10.0
+    - cudnn=7.6
+    - cupti=10.0
+    - scipy
+    - tensorflow-gpu==1.15
+    - pip:
+        - opencv-contrib-python==4.1.2.30

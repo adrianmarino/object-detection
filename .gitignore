@@ -1,0 +1,14 @@
+**/*.mp4
+**/*.h5
+**/*.mp4.crdownload
+**/__pycache__/
+.idea/
+**/*.cprof
+cv2
+glob
+lib/tf_od_api/
+dataset/
+ssd_*
+faster_*
+*.tar.gz
+**/.ipynb_checkpoints/
