@@ -19,5 +19,10 @@ dependencies:
     - cupti=10.0
     - scipy
     - tensorflow-gpu==1.15
+    - pytest
+    - pyyaml
+    - pandas
+    - seaborn
     - pip:
         - opencv-contrib-python==4.1.2.30
+        - untangle

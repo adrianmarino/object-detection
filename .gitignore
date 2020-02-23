@@ -6,7 +6,7 @@
 **/*.cprof
 cv2
 glob
-lib/tf_od_api/
+lib/tensorflow_object_detection_api/
 dataset/
 ssd_*
 faster_*

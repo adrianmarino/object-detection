@@ -18,8 +18,8 @@ sys.path.append("..")
 
 # In[3]:
 
-from lib.tf_od_api.research.object_detection.utils import label_map_util
-from lib.tf_od_api.research.object_detection.utils import visualization_utils as vis_util
+from lib.tensorflow_object_detection_api.research.object_detection.utils import label_map_util
+from lib.tensorflow_object_detection_api.research.object_detection.utils import visualization_utils as vis_util
 
 # # Model preparation
 
@@ -67,7 +67,7 @@ DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 PATH_TO_CKPT = MODEL_NAME + '/frozen_inference_graph.pb'
 
 # List of the strings that is used to add correct label for each box.
-PATH_TO_LABELS = os.path.join('lib', 'tf_od_api', 'research', 'object_detection', 'data', 'mscoco_label_map.pbtxt')
+PATH_TO_LABELS = os.path.join('lib', 'tensorflow_object_detection_api', 'research', 'object_detection', 'data', 'mscoco_label_map.pbtxt')
 
 NUM_CLASSES = 90
 
