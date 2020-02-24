@@ -26,7 +26,7 @@ def missing_samples_count_by_class(dataset):
 def plot_samples_count_by_class(dataset):
     sns.set_context("paper")
     df = samples_count_by_class(dataset)
-    plt.figure(figsize=(50, 10))
+    plt.figure(figsize=(50, 7))
     chart = sns.barplot(x='Class', y='Count', data=df)
     chart.set_title('Samples count by class', fontsize='x-large')
     chart.set_xticklabels(
@@ -46,7 +46,7 @@ def plot_missing_samples_by_class(dataset):
     if df.size == 0:
         print('Dataset balance!')
     else:
-        plt.figure(figsize=(50, 10))
+        plt.figure(figsize=(50, 7))
         chart = sns.barplot(x='Class', y='Missing', data=df)
         chart.set_title(f'Missing samples count by class to balance dataset to {df["Count"].max()} samples per class',
                         fontsize='x-large')
