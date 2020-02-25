@@ -1,0 +1,14 @@
+#!/bin/bash
+source bin/setup-environment
+
+python $LIB_PATH/dataset/xml_to_csv.py $DATASET_PATH
+
+python $LIB_PATH/dataset/generate_tfrecord.py \
+    --csv_input=$TRAIN_DATASET_PATH/train_labels.csv \
+    --image_dir=$TRAIN_DATASET_PATH/samples \
+    --output_path=$TRAINING_PATH/train.record
+
+python $LIB_PATH/dataset/generate_tfrecord.py \
+    --csv_input=$TEST_DATASET_PATH/test_labels.csv \
+    --image_dir=$TEST_DATASET_PATH/samples \
+    --output_path=$TRAINING_PATH/test.record

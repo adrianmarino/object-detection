@@ -1,9 +1,14 @@
 #!/bin/bash
 export BASE_PATH=$(pwd)
 
+export DATASET_PATH=$BASE_PATH/dataset
+export TRAIN_DATASET_PATH=$DATASET_PATH/train
+export TEST_DATASET_PATH=$DATASET_PATH/test
+
+export TRAINING_PATH=$BASE_PATH/training
 export LIB_PATH=$BASE_PATH/lib
 
-export OBJECT_DETECTOR_API=$LIB_PATH/tensorflow_object_detection_api
-export OBJECT_DETECTOR_API_PATHS=$OBJECT_DETECTOR_API/research:OBJECT_DETECTOR_API/research/slim:OBJECT_DETECTOR_API/research/object_detector
+export RESEARCH_PATH=$LIB_PATH/tf_od_api/models/research
+export SLIM_PATH=$RESEARCH_PATH/slim
 
-export PYTHONPATH=$PYTHONPATH:$BASE_PATH:$OBJECT_DETECTOR_API_PATHS
+export PYTHONPATH=$PYTHONPATH:$BASE_PATH:$SLIM_PATH:$RESEARCH_PATH

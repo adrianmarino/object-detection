@@ -8,8 +8,6 @@ import numpy as np
 import six.moves.urllib as urllib
 import tensorflow as tf
 
-cap = cv2.VideoCapture(2)
-
 # This is needed since the notebook is stored in the object_detection folder.
 sys.path.append("..")
 
@@ -18,8 +16,18 @@ sys.path.append("..")
 
 # In[3]:
 
-from lib.tensorflow_object_detection_api.research.object_detection.utils import label_map_util
-from lib.tensorflow_object_detection_api.research.object_detection.utils import visualization_utils as vis_util
+from lib.tf_od_api.models.research.object_detection.utils import label_map_util
+from lib.tf_od_api.models.research.object_detection.utils import visualization_utils as vis_util
+
+DEFAULT_MODEL_NAME = 'faster_rcnn_inception_resnet_v2_atrous_coco_2018_01_28'
+if len(sys.argv) > 1 and len(sys.argv[1]) > 0:
+    MODEL_NAME = str(sys.argv[1])
+    print(f'==> Selected model: {MODEL_NAME} <==\n\n')
+else:
+    print(f'==> Set default model: {DEFAULT_MODEL_NAME} <==\n\n')
+    MODEL_NAME = DEFAULT_MODEL_NAME
+
+cap = cv2.VideoCapture(0)
 
 # # Model preparation
 
@@ -50,16 +58,6 @@ print('Mask RCNN Models:')
 print('- mask_rcnn_inception_resnet_v2_atrous_coco_2018_01_28')
 print('\n\n')
 
-
-DEFAULT_MODEL_NAME = 'faster_rcnn_inception_resnet_v2_atrous_coco_2018_01_28'
-
-if len(sys.argv) > 1 and len(sys.argv[1]) > 0:
-    MODEL_NAME = str(sys.argv[1])
-    print(f'==> Selected model: {MODEL_NAME} <==\n\n')
-else:
-    print(f'==> Set default model: {DEFAULT_MODEL_NAME} <==\n\n')
-    MODEL_NAME = DEFAULT_MODEL_NAME
-
 MODEL_FILE = MODEL_NAME + '.tar.gz'
 DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 
@@ -67,7 +65,7 @@ DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 PATH_TO_CKPT = MODEL_NAME + '/frozen_inference_graph.pb'
 
 # List of the strings that is used to add correct label for each box.
-PATH_TO_LABELS = os.path.join('lib', 'tensorflow_object_detection_api', 'research', 'object_detection', 'data', 'mscoco_label_map.pbtxt')
+PATH_TO_LABELS = os.path.join('lib', 'tf_od_api', 'research', 'object_detection', 'data', 'mscoco_label_map.pbtxt')
 
 NUM_CLASSES = 90
 

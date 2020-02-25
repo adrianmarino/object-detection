@@ -6,9 +6,10 @@
 **/*.cprof
 cv2
 glob
-lib/tensorflow_object_detection_api/
+lib/tf_od_api/
 dataset/
 ssd_*
 faster_*
 *.tar.gz
 **/.ipynb_checkpoints/
+training/
