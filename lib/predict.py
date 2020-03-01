@@ -21,13 +21,12 @@ from lib.tf_od_api.models.research.object_detection.utils import visualization_u
 
 DEFAULT_MODEL_NAME = 'faster_rcnn_inception_resnet_v2_atrous_coco_2018_01_28'
 if len(sys.argv) > 1 and len(sys.argv[1]) > 0:
-    MODEL_NAME = str(sys.argv[1])
-    print(f'==> Selected model: {MODEL_NAME} <==\n\n')
+`for_window [class="^jetbrains-.+"][window_type=dialog] focus`    print(f'==> Selected model: {MODEL_NAME} <==\n\n')
 else:
     print(f'==> Set default model: {DEFAULT_MODEL_NAME} <==\n\n')
     MODEL_NAME = DEFAULT_MODEL_NAME
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(2)
 
 # # Model preparation
 
@@ -62,12 +61,17 @@ MODEL_FILE = MODEL_NAME + '.tar.gz'
 DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 
 # Path to frozen detection graph. This is the actual model that is used for the object detection.
-PATH_TO_CKPT = MODEL_NAME + '/frozen_inference_graph.pb'
+# PATH_TO_CKPT = MODEL_NAME + '/frozen_inference_graph.pb'
+
+PATH_TO_CKPT = 'training/inference_graph/frozen_inference_graph.pb'
+
 
 # List of the strings that is used to add correct label for each box.
-PATH_TO_LABELS = os.path.join('lib', 'tf_od_api', 'research', 'object_detection', 'data', 'mscoco_label_map.pbtxt')
+# PATH_TO_LABELS = os.path.join('lib', 'tf_od_api', 'research', 'object_detection', 'data', 'mscoco_label_map.pbtxt')
+PATH_TO_LABELS = os.path.join('dataset', 'train', 'label_map.pbtxt')
 
-NUM_CLASSES = 90
+
+NUM_CLASSES = 55
 
 # ## Download Model
 

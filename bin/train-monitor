@@ -1,0 +1,4 @@
+#!/bin/bash
+source bin/setup-environment
+
+tensorboard --logdir=$TRAINING_PATH

@@ -13,3 +13,4 @@ faster_*
 *.tar.gz
 **/.ipynb_checkpoints/
 training/
+test/data_aug/output/

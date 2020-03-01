@@ -17,7 +17,7 @@ def find_keys(node, kv):
 class Config:
     def __init__(self, path):
         with open(path, 'r') as file:
-            self.config = yaml.load(file)
+            self.config = yaml.load(file, Loader=yaml.FullLoader)
 
     def __getitem__(self, property_name):
         if "." in property_name:

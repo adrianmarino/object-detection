@@ -4,6 +4,7 @@ channels:
 - defaults
 - conda-forge
 - anaconda
+- conda-forge/label/cf201901
 dependencies:
     - python=3.7
     - Cython
@@ -23,6 +24,8 @@ dependencies:
     - pyyaml
     - pandas
     - seaborn
+    - pip
     - pip:
         - opencv-contrib-python==4.1.2.30
         - untangle
+        - tensorboard
