@@ -5,6 +5,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 from lib.data_aug.bbox_util import *
+from random import randrange
 
 
 class RandomHorizontalFlip(object):
@@ -289,6 +290,7 @@ class RandomTranslate(object):
         bboxes[:, :4] += [corner_x, corner_y, corner_x, corner_y]
 
         bboxes = clip_box(bboxes, [0, 0, img_shape[1], img_shape[0]], 0.25)
+ 
 
         return img, bboxes
 
@@ -406,6 +408,8 @@ class RandomRotate(object):
 
         img = rotate_im(img, angle)
 
+        print(bboxes)
+
         corners = get_corners(bboxes)
 
         corners = np.hstack((corners, bboxes[:, 4:]))
@@ -470,7 +474,6 @@ class Rotate(object):
         """
 
         angle = self.angle
-        print(self.angle)
 
         w, h = img.shape[1], img.shape[0]
         cx, cy = w // 2, h // 2
@@ -616,13 +619,18 @@ class Shear(object):
 
 
 class Resize(object):
-    """Resize the image in accordance to percent scale factor
-
+    """Resize the image in accordance to `image_letter_box` function in darknet 
+    
+    The aspect ratio is maintained. The longer side is resized to the input 
+    size of the network, while the remaining space on the shorter side is filled 
+    with black color. **This should be the last transform**
+    
     
     Parameters
     ----------
-    scale : float
-
+    inp_dim : tuple(int)
+        tuple containing the size to which the image will be resized.
+        
     Returns
     -------
     
@@ -634,73 +642,32 @@ class Resize(object):
         number of bounding boxes and 4 represents `x1,y1,x2,y2` of the box
         
     """
-
-    def __init__(self, scale):
-        self.scale = scale
-
-    def __call__(self, img, bounding_boxes):
-        h, w = img.shape[0], img.shape[1]
-
-        new_h = int(h * self.scale)
-        new_w = int(w * self.scale)
-
-        new_img = cv2.resize(img, (new_w, new_h))
-
-        bounding_boxes[:, :4] *= self.scale
-
-        return new_img.astype(np.uint8), bounding_boxes
-
-
-class LetterboxResize(object):
-    """Resize the image in accordance to `image_letter_box` function in darknet
-
-    The aspect ratio is maintained. The longer side is resized to the input
-    size of the network, while the remaining space on the shorter side is filled
-    with black color. **This should be the last transform**
-
-
-    Parameters
-    ----------
-    inp_dim : tuple(int)
-        tuple containing the size to which the image will be resized.
-
-    Returns
-    -------
-
-    numpy.ndaaray
-        Sheared image in the numpy format of shape `HxWxC`
-
-    numpy.ndarray
-        Resized bounding box co-ordinates of the format `n x 4` where n is
-        number of bounding boxes and 4 represents `x1,y1,x2,y2` of the box
-
-    """
-
+    
     def __init__(self, inp_dim):
         self.inp_dim = inp_dim
-
+        
     def __call__(self, img, bboxes):
-        w, h = img.shape[1], img.shape[0]
-
+        w,h = img.shape[1], img.shape[0]
         img = letterbox_image(img, self.inp_dim)
-
-        scale = min(self.inp_dim / h, self.inp_dim / w)
-        bboxes[:, :4] *= scale
-
-        new_w = scale * w
-        new_h = scale * h
-        inp_dim = self.inp_dim
-
-        del_h = (inp_dim - new_h) / 2
-        del_w = (inp_dim - new_w) / 2
-
+    
+    
+        scale = min(self.inp_dim/h, self.inp_dim/w)
+        bboxes[:,:4] *= (scale)
+    
+        new_w = scale*w
+        new_h = scale*h
+        inp_dim = self.inp_dim   
+    
+        del_h = (inp_dim - new_h)/2
+        del_w = (inp_dim - new_w)/2
+    
         add_matrix = np.array([[del_w, del_h, del_w, del_h]]).astype(int)
-
-        bboxes[:, :4] += add_matrix
-
+    
+        bboxes[:,:4] += add_matrix
+    
         img = img.astype(np.uint8)
-
-        return img, bboxes
+    
+        return img, bboxes 
 
 
 class RandomHSV(object):
@@ -827,5 +794,7 @@ class Sequence(object):
                 prob = self.probs
 
             if random.random() < prob:
+                bboxes = bboxes.astype(np.float64).copy()
                 images, bboxes = augmentation(images, bboxes)
-        return images, bboxes
+                print(f'bboxes: {bboxes}, aug: {type(augmentation)}')
+        return images, bboxes.astype(np.int32)
