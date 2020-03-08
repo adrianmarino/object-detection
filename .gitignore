@@ -12,6 +12,8 @@ ssd_*
 faster_*
 *.tar.gz
 **/.ipynb_checkpoints/
-training/
 test/aug/output/
 test/aug/output_b/
+models/
+training/
+base_dataset/

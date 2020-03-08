@@ -1,4 +1,4 @@
-classes:
+labels:
   - card
   - black_joker
   - joker
@@ -54,3 +54,10 @@ classes:
   - jack_of_clubs
   - queen_of_clubs
   - king_of_clubs
+
+logger:
+  name: object-detector
+  path: logs
+  level: INFO
+  message_format: "%(levelname)s %(asctime)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"

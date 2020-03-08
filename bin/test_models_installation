@@ -1,4 +1,0 @@
-#!/bin/bash
-source bin/setup-environment
-
-python $RESEARCH_PATH/object_detection/builders/model_builder_test.py

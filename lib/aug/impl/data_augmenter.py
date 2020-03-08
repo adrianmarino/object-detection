@@ -1,3 +1,4 @@
+import logging
 import os
 from multiprocessing.pool import ThreadPool
 
@@ -8,28 +9,32 @@ from lib.dataset.image import Image
 from lib.dataset.pascal_voc.pascal_voc_file import PascalVOCFile
 from lib.dataset.sample import Sample
 from lib.list_utils import flatten
+from lib.util import os_utils
 
-
-def create_directory(path):
-    if not os.path.exists(path):
-        os.makedirs(path)
+logger = logging.getLogger()
 
 
 class DataAugmenter(IDataAugmenter):
-    def __init__(self, dataset, output_path, max_parallel_augs=8):
+    def __init__(self, dataset, output_path, max_parallel_augs=100):
         self.__output_path = output_path
-        create_directory(output_path)
+        os_utils.create_path(output_path)
         self.__dataset = dataset
         self.max_parallel_augs = max_parallel_augs
 
     def augment(self, samples, aug_strategy, aug_count=10):
         with ThreadPool(self.max_parallel_augs) as pool:
             return flatten(
-                pool.starmap_async(self.sample_augment, [(aug_strategy, s, aug_count) for s in samples]).get()
+                pool.starmap_async(
+                    self.sample_augment,
+                    [(aug_strategy, s, s_num, aug_count) for s_num, s in enumerate(samples, start=1) if
+                     s.bounding_boxes is not None and len(s.bounding_boxes) > 0]
+                ).get()
             )
 
-    def sample_augment(self, aug_strategy, sample, aug_count):
+    def sample_augment(self, aug_strategy, sample, sample_num, aug_count):
         max_pool = self.max_parallel_augs if aug_count > self.max_parallel_augs else aug_count
+
+        logger.info(f'ss>>> {sample_num} sample <<< - File: {sample.image.filename()}...')
 
         with ThreadPool(max_pool) as pool:
             return pool.starmap_async(
@@ -42,6 +47,12 @@ class DataAugmenter(IDataAugmenter):
 
         if not os.path.exists(input_image_path):
             raise Exception(f'Not found {input_image_path} image path!')
+
+        aug_image_path = self.destiny_path(sample.image, index)
+        aug_xml_path = os.path.splitext(aug_image_path)[0] + '.xml'
+        if os.path.exists(aug_image_path) and os.path.exists(aug_xml_path):
+            logger.info(f'Already exist {os.path.basename(aug_image_path)} augmented sample...')
+            return PascalVOCFile.load(aug_xml_path)
 
         original_raw_image = cv2.imread(input_image_path)
 
@@ -58,12 +69,14 @@ class DataAugmenter(IDataAugmenter):
         return aug_sample
 
     def __create_sample(self, img, aug_raw_image, aug_bboxes, index):
-        parts = img.filename().split('.')
-        path = f'{self.__output_path}/{parts[0]}{index}.{parts[1]}'
         image = Image(
-            path,
+            self.destiny_path(img, index),
             height=aug_raw_image.shape[0],
             width=aug_raw_image.shape[1],
             depth=img.depth
         )
         return Sample(image, aug_bboxes)
+
+    def destiny_path(self, img, index):
+        parts = img.filename().split('.')
+        return f'{self.__output_path}/{parts[0]}{index}.{parts[1]}'
