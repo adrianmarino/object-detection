@@ -17,3 +17,4 @@ test/aug/output_b/
 models/
 training/
 base_dataset/
+logs/

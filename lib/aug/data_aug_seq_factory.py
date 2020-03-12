@@ -21,7 +21,7 @@ class DataAugSequenceFactory:
         # Define our sequence of augmentation steps that will be applied to every image.
         return iaa.Sequential(
             [
-                iaa.Resize({'height': 0.16, 'width': 'keep-aspect-ratio'}),
+                iaa.Resize({'height': 0.1, 'width': 'keep-aspect-ratio'}),
                 iaa.Sequential(
                     [
                         #

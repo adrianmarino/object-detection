@@ -34,7 +34,7 @@ class DataAugmenter(IDataAugmenter):
     def sample_augment(self, aug_strategy, sample, sample_num, aug_count):
         max_pool = self.max_parallel_augs if aug_count > self.max_parallel_augs else aug_count
 
-        logger.info(f'ss>>> {sample_num} sample <<< - File: {sample.image.filename()}...')
+        logger.info(f'>>> {sample_num} sample <<< - File: {sample.image.filename()}...')
 
         with ThreadPool(max_pool) as pool:
             return pool.starmap_async(
