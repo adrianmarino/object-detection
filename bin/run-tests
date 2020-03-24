@@ -1,0 +1,14 @@
+#!/bin/bash
+source bin/setup-environment
+
+clear
+
+pytest  --ignore=base-dataset \
+        --ignore=bin \
+        --ignore=dataset \
+        --ignore=lib \
+        --ignore=logs \
+        --ignore=models \
+        --ignore=notebooks \
+        --ignore=tests \
+        --ignore=training

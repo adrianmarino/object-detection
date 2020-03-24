@@ -15,7 +15,7 @@ logger = logging.getLogger()
 
 
 class DataAugmenter(IDataAugmenter):
-    def __init__(self, dataset, output_path, max_parallel_augs=100):
+    def __init__(self, dataset, output_path, max_parallel_augs=50):
         self.__output_path = output_path
         os_utils.create_path(output_path)
         self.__dataset = dataset

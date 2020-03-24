@@ -3,6 +3,6 @@ source bin/setup-environment
 
 python $RESEARCH_PATH/object_detection/export_inference_graph.py \
     --input-type image_tensor \
-    --pipeline_config_path $TRAINING_PATH/faster_rcnn_inception_resnet_v2_atrous_coco.config \
-    --trained_checkpoint_prefix $TRAINING_PATH/model.ckpt-8357 \
+    --pipeline_config_path $TRAINING_PATH/pipeline.config \
+    --trained_checkpoint_prefix $TRAINING_PATH/model.ckpt-$1 \
     --output_directory $TRAINING_PATH/inference_graph

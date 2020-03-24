@@ -8,11 +8,14 @@ sys.path.append("..")
 
 from lib.tf_od_api.models.research.object_detection.utils import label_map_util
 from lib.tf_od_api.models.research.object_detection.utils import visualization_utils as vis_util
+from lib.config import Config
 
-PATH_TO_CKPT = 'training/frozen_inference_graph.pb'
+PATH_TO_CKPT = 'training/inference_graph/frozen_inference_graph.pb'
 PATH_TO_LABELS = 'dataset/label_map.pbtxt'
-NUM_CLASSES = 55
 
+cfg = Config('./config.yml')
+expected_classes = cfg.property('labels')
+NUM_CLASSES = len(expected_classes)
 print(f'Loading model...')
 detection_graph = tf.Graph()
 with detection_graph.as_default():
@@ -74,10 +77,10 @@ with detection_graph.as_default():
                 use_normalized_coordinates=True,
                 line_thickness=1,
                 max_boxes_to_draw=30,
-                min_score_thresh=.60
+                min_score_thresh=.50
             )
 
-            cv2.imshow('object detection', cv2.resize(image_np, (1280, 720)))
+            cv2.imshow('object detection', image_np)
 
             if cv2.waitKey(25) & 0xFF == ord('q'):
                 cv2.destroyAllWindows()

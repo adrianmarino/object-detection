@@ -16,5 +16,6 @@ test/aug/output/
 test/aug/output_b/
 models/
 training/
-base_dataset/
+base-dataset/
 logs/
+tests/

@@ -1,17 +1,15 @@
-import os
-import sys
 import logging
+import sys
 
 from lib.aug.data_aug_seq_factory import DataAugSequenceFactory
-from lib.aug.impl.img_aug_sample_aug_strategy import IMGAUGSampleAugStrategy
 from lib.aug.impl.data_augmenter import DataAugmenter
+from lib.aug.impl.img_aug_sample_aug_strategy import IMGAUGSampleAugStrategy
 from lib.dataset.pascal_voc.pascal_voc_dataset import PascalVOCDataset
 
 logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
-sys.path.append("..")
 
-SOURCE_DATASET = './aug/dataset1'
-OUTPUT_PATH = f'{os.getcwd()}/aug/output'
+SOURCE_DATASET = 'test/aug/dataset1'
+OUTPUT_PATH = 'test/aug/output'
 
 
 def test_aug_dataset():
