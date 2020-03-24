@@ -6,7 +6,7 @@
 **/*.cprof
 cv2
 glob
-lib/tf_od_api/
+lib/tf_od_api/models
 dataset/
 ssd_*
 faster_*
