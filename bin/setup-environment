@@ -11,4 +11,6 @@ export LIB_PATH=$BASE_PATH/lib
 export RESEARCH_PATH=$LIB_PATH/tf_od_api/models/research
 export SLIM_PATH=$RESEARCH_PATH/slim
 
+export MODELS_PATH=$BASE_PATH/models
+
 export PYTHONPATH=$PYTHONPATH:$BASE_PATH:$SLIM_PATH:$RESEARCH_PATH
