@@ -19,3 +19,5 @@ training/
 base-dataset/
 logs/
 tests/
+notebooks/dataset-generation/dtd/
+notebooks/dataset-generation/data/

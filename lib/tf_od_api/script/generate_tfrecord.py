@@ -14,7 +14,7 @@ from __future__ import print_function
 import warnings
 
 warnings.filterwarnings('ignore')
-
+º
 import os
 import io
 import pandas as pd
