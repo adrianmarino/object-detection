@@ -17,6 +17,7 @@ test/aug/output_b/
 models/
 training/
 base-dataset/
+examples/
 logs/
 tests/
 notebooks/dataset-generation/dtd/

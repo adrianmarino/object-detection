@@ -1,6 +1,0 @@
-#!/bin/bash
-source bin/setup-environment
-
-python $LIB_PATH/predict.py \
-  --model-path $1 \
-  --label-map-path $DATASET_PATH/label_map.pbtxt
