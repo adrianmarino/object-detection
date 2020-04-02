@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from lib.prediction.video import available_video_ports
+from lib.stream.reader.video_reader import available_video_ports
 
 
 def intersection(lst1, lst2): return list(set(lst1) & set(lst2))
@@ -18,7 +18,6 @@ class InputParamsResolver:
         parser.add_argument('--model-path', help='Path of final model graph')
         parser.add_argument('--label-map-path', help='Path of label map file')
         parser.add_argument('--input-image', help='Path of an image file.')
-        parser.add_argument('--input-video', help='Path of a video file.')
         parser.add_argument('--output', help='Path of an output file.')
         parser.add_argument('--input-webcam', help=self.__input_webcam_info(), type=int, default=0)
         self.__parser = parser
