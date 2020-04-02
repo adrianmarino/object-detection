@@ -20,7 +20,9 @@ def hide_tensorflow_logs(): os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 def create_reader(params):
     if 'input_image' in params:
-        return ImageReader(params['input_image'].split(','))
+        return ImageReader([params['input_image']])
+    elif 'input_video' in params:
+        return VideoReader(params['input_video'])
     elif 'input_webcam' in params:
         video_port = assert_video_port_availability(params['input_webcam'])
         return VideoReader(video_port)
@@ -34,8 +36,9 @@ def create_writer(params):
 
 
 def show(frame, scale_percent=200):
-    if type(writer) is VideoWriter:
-        cv2.imshow('Object detection', frame.scale(scale_percent))
+    if params['input_webcam']:
+        scaled_frame = frame.scale(scale_percent)
+        cv2.imshow('Object detection', scaled_frame.raw)
 
 
 def create_model(params):

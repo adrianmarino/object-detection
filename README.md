@@ -5,9 +5,9 @@
 
     ```bash
     bin/predictor \
-        --model-path models/inference_graph_106421/frozen_inference_graph.pb \
+        --model-path models/inference_graph_16232/frozen_inference_graph.pb \
         --label-map-path dataset/label_map.pbtxt \
-        --input-image input/never_seen_sample_1.jpg \
+        --input-image ./input/never_seen_sample_4.jpg \
         --output ./output
     ```
 
@@ -15,7 +15,7 @@
 
     ```bash
     bin/predictor \
-        --model-path models/inference_graph_106421/frozen_inference_graph.pb \
+        --model-path models/inference_graph_16232/frozen_inference_graph.pb \
         --label-map-path dataset/label_map.pbtxt \
         --input-webcam 2 \
         --output ./output/video.mp4

@@ -66,7 +66,7 @@ class Model:
             np.squeeze(scores),
             self.__category_index,
             use_normalized_coordinates=True,
-            line_thickness=3,
-            max_boxes_to_draw=30,
-            min_score_thresh=.2
+            line_thickness=1,
+            max_boxes_to_draw=50,
+            min_score_thresh=.25
         )

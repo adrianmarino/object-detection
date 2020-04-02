@@ -10,7 +10,7 @@ class ImageFrame:
         self.height = height
         self.size = (round(self.width), round(self.height))
         self.path = path
-        self.filename = ntpath.basename(self.path)
+        self.filename = None if self.path is None else ntpath.basename(self.path)
 
     def __str__(self):
         return f'Frame size: {self.size}, path: {self.path}'

@@ -17,9 +17,12 @@ class InputParamsResolver:
         parser = argparse.ArgumentParser(prog="object-detection-predictor", description='Object detection predictor')
         parser.add_argument('--model-path', help='Path of final model graph')
         parser.add_argument('--label-map-path', help='Path of label map file')
-        parser.add_argument('--input-image', help='Path of an image file.')
-        parser.add_argument('--output', help='Path of an output file.')
+
+        parser.add_argument('--input-image', help='Input image path.')
+        parser.add_argument('--input-video', help='Input video path.')
         parser.add_argument('--input-webcam', help=self.__input_webcam_info(), type=int, default=0)
+
+        parser.add_argument('--output', help='Output image/video path.')
         self.__parser = parser
 
     @staticmethod
