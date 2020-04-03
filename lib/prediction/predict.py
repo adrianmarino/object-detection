@@ -62,7 +62,8 @@ if __name__ == '__main__':
     with model.graph.as_default():
         with tf.compat.v1.Session(graph=model.graph) as session:
             for frame in reader:
-                # model.predict(session, frame)
+                if not params['disable_bboxes']:
+                    model.predict(session, frame)
                 writer.write(frame)
                 show(frame)
                 if check_end_prediction_action_keys():
