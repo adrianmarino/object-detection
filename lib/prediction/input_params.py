@@ -22,6 +22,10 @@ class InputParamsResolver:
         parser.add_argument('--input-video', help='Input video path.')
         parser.add_argument('--input-webcam', help=self.__input_webcam_info(), type=int, default=0)
 
+        parser.add_argument('--show-preview', dest='show_preview', action='store_true')
+        parser.set_defaults(force_view=False)
+        parser.add_argument('--preview-scale', help='Change preview scale. Default: 100', type=int, default=100)
+
         parser.add_argument('--output', help='Output image/video path.')
         self.__parser = parser
 

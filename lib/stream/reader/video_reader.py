@@ -30,27 +30,22 @@ def assert_video_port_availability(video_port):
 
 class VideoReader:
     def __init__(self, video_port=0):
-        self.__video_port = video_port
-        self.__reader = None
+        self.reader = cv2.VideoCapture(video_port)
 
     def __iter__(self):
         return self
 
-    def __get_reader(self):
-        if self.__reader is None:
-            self.__reader = cv2.VideoCapture(self.__video_port)
-        return self.__reader
-
     def __next__(self):
-        has_frame, frame = self.__get_reader().read()
-        if has_frame:
-            return ImageFrame(
-                frame,
-                width=self.__reader.get(cv2.CAP_PROP_FRAME_WIDTH),
-                height=self.__reader.get(cv2.CAP_PROP_FRAME_HEIGHT)
-            )
-        else:
+        ret, frame = self.reader.read()
+
+        if not ret:
+            raise StopIteration
+        if not self.reader.isOpened():
             raise StopIteration
 
+        width = self.reader.get(3)
+        height = self.reader.get(4)
+        return ImageFrame(frame, width, height)
+
     def close(self):
-        self.__get_reader().release()
+        self.reader.release()

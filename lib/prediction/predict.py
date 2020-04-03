@@ -35,9 +35,9 @@ def create_writer(params):
         return VideoWriter(params['output'])
 
 
-def show(frame, scale_percent=200):
-    if params['input_webcam']:
-        scaled_frame = frame.scale(scale_percent)
+def show(frame):
+    if params['show_preview'] or params['input_webcam']:
+        scaled_frame = frame.scale(params['preview_scale'])
         cv2.imshow('Object detection', scaled_frame.raw)
 
 
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     with model.graph.as_default():
         with tf.compat.v1.Session(graph=model.graph) as session:
             for frame in reader:
-                model.predict(session, frame)
+                # model.predict(session, frame)
                 writer.write(frame)
                 show(frame)
                 if check_end_prediction_action_keys():

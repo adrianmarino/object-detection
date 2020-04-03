@@ -6,9 +6,9 @@ import cv2
 class ImageFrame:
     def __init__(self, raw, width, height, path=None):
         self.raw = raw
-        self.width = width
-        self.height = height
-        self.size = (round(self.width), round(self.height))
+        self.width = round(width or 0)
+        self.height = round(height or 0)
+        self.size = (self.width, self.height)
         self.path = path
         self.filename = None if self.path is None else ntpath.basename(self.path)
 
