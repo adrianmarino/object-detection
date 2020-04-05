@@ -1,6 +1,7 @@
-**/*.mp4
+input/*.mp4
+output/*.mp4
+
 **/*.h5
-**/*.mp4.crdownload
 **/__pycache__/
 .idea/
 **/*.cprof
@@ -15,6 +16,7 @@ faster_*
 
 test/aug/output/
 test/aug/output_b/
+
 models/
 training/
 base-dataset/
@@ -22,6 +24,10 @@ base-dataset/
 tests/
 
 notebooks/dataset-generation/dtd/
-notebooks/dataset-generation/data/
+notebooks/dataset-generation/data/cards
+notebooks/dataset-generation/data/scenes
+notebooks/dataset-generation/data/backgrounds.pck
+notebooks/dataset-generation/data/cards.pck
+
 
 output.txt
