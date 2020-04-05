@@ -1,6 +1,6 @@
 #  Object detection tool
 
-Detect objects using [Tensorflow Object detection API](https://github.com/tensorflow/models/tree/master/research/object_detection).
+An object detection tool based on Tensorflow Object detection API](https://github.com/tensorflow/models/tree/master/research/object_detection).
 
 ## Setup
 
