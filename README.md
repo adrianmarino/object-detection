@@ -24,9 +24,11 @@ This download models repository to `lib/tf_od_api` path
 cd lib/tf_od_api/models
 ```
 
-**Step 3**: Got to **Tensorflow Object detection API** installation instructions and follow the installation 
-from [COCO API installation](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md#coco-api-installation
+**Step 3**: Got to **Tensorflow Object detection API** installation instructions and follow nest steps:
+
+* [COCO API installation](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md#coco-api-installation
 ) step.
+* [Protobuf Compilation](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md#protobuf-compilation)
 
 ## Training
 
