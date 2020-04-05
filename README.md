@@ -1,6 +1,6 @@
 #  Object detection tool
 
-Detect objects using [Tensorflow Object detection API](https://github.com/tensorflow/models/tree/master/research/object_detection).
+An object detection tool based on [Tensorflow Object detection API](https://github.com/tensorflow/models/tree/master/research/object_detection).
 
 ## Setup
 
@@ -64,7 +64,7 @@ The dataset must have next structure:
      ....
     sampleN.jpg
     sampleN.xml <---- Pascal VOC file
-./dataset/train/samples
+./dataset/test/samples
     sample1.jpg
     sample1.xml
     ....
@@ -83,17 +83,17 @@ from Pascal VOC files to integer values. Add next items for each class to `label
 
 ```bash
 item {
-	id: 1
-	name: 'Class1'
+  id: 1
+  name: 'Class1'
 }
 item {
-	id: 2
-	name: 'Class2'
+  id: 2
+  name: 'Class2'
 }
 ...
 item {
-	id: N
-	name: 'ClassN'
+  id: N
+  name: 'ClassN'
 }
 ```
 
