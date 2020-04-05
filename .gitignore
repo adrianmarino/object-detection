@@ -7,13 +7,10 @@ output/*.mp4
 **/*.cprof
 cv2
 glob
-lib/tf_od_api/models
-dataset/
-ssd_*
-faster_*
-*.tar.gz
 **/.ipynb_checkpoints/
 
+lib/tf_od_api/models/
+dataset/
 test/aug/output/
 test/aug/output_b/
 

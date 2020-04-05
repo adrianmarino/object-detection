@@ -4,11 +4,19 @@ Detect objects using [Tensorflow Object detection API](https://github.com/tensor
 
 ## Setup
 
-Create project environment.
+**Step 1**: Create project environment.
 
 ```bash
 conda env create --file environment.yml
 ```
+
+**Step 2**: Donwload [Tensorflow Object detection API](https://github.com/tensorflow/models/tree/master/research/object_detection).
+
+```bash
+git clone https://github.com/tensorflow/models.git lib/tf_od_api/models
+```
+
+This download models repository to `lib/tf_od_api` path.
 
 ## Training
 
@@ -91,6 +99,12 @@ bin/train 500000
 ```
  
 _Note_: 500.000 is the number of steps. An steps represent the number of batches of samples to process.
+
+To see training output can use:
+
+```bash
+bin/train-output
+```
 
 **Step 7**: To check the accuracy of model must use mAP, AR and F1 Score metrics. 
 You can check this from a tensorboard. To run tensorboard:
