@@ -1,6 +1,8 @@
 #!/bin/bash
 source bin/setup-environment
 
+mkdir -p $TRAINING_PATH
+
 echo -e "Generate train/test csv samples file..."
 python $LIB_PATH/tf_od_api/script/xml_to_csv.py --dataset-path $DATASET_PATH
 

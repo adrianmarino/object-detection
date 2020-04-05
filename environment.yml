@@ -1,4 +1,4 @@
-name: tensorflow-object-detector
+name: object-detection
 channels:
 - https://conda.anaconda.org/menpo
 - defaults

@@ -1,6 +1,8 @@
 #!/bin/bash
 source bin/setup-environment
 
+mkdir -p $MODELS_PATH
+
 python $RESEARCH_PATH/object_detection/export_inference_graph.py \
     --input-type image_tensor \
     --pipeline_config_path $TRAINING_PATH/pipeline.config \
