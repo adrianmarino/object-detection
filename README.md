@@ -1,4 +1,4 @@
-#  object-detection
+#  Object detection tool
 
 Detect objects using [Tensorflow Object detection API](https://github.com/tensorflow/models/tree/master/research/object_detection).
 
@@ -10,13 +10,13 @@ Detect objects using [Tensorflow Object detection API](https://github.com/tensor
 conda env create --file environment.yml
 ```
 
-**Step 2**: Donwload [Tensorflow Object detection API](https://github.com/tensorflow/models/tree/master/research/object_detection).
+**Step 2**: Donwload [Tensorflow Object detection API](https://github.com/tensorflow/models/tree/master/research/object_detection) repository under `lib/tf_od_api` path.
 
 ```bash
 git clone https://github.com/tensorflow/models.git lib/tf_od_api/models
 ```
 
-This download models repository to `lib/tf_od_api` path
+
 
 **Step 3**: Go to `models` path.
 
@@ -24,17 +24,17 @@ This download models repository to `lib/tf_od_api` path
 cd lib/tf_od_api/models
 ```
 
-**Step 4**: Got to **Tensorflow Object detection API** installation instructions and follow nest steps:
+**Step 4**: Go to [Tensorflow Object detection API](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md) installation instructions and follow next steps:
 
 * [COCO API installation](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md#coco-api-installation
-) step.
+)
 * [Protobuf Compilation](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md#protobuf-compilation)
 
 
-**Step 5**:  Check that installation process its ok.
+**Step 5**:  Check that installation process it's ok.
 
 ```bash
-bin/test-models-installatio
+bin/test-models-installation
 ```
 
 
@@ -197,7 +197,10 @@ bin/export-inference-graph 24494
 * [data-aumentation.ipynb](/notebooks/data-augmenter.ipynb): Augment dataset samples using 'DataAugmenter' class, that is an abstraction under [imgaug](https://github.com/aleju/imgaug).
 * [f1-score-metric.ipynb](/notebooks/metrics/f1-score-metric.ipynb): Calculate **F1 SCore** metric useful to check object detection model accuracy.
 
-## Prediction
+
+## Model Prediction
+
+To see how trained model detect objects from images, videos or event from a webcam follow next steps:
 
 **Step 1:**: Activate environment.
 
@@ -278,3 +281,21 @@ optional arguments:
                         Change preview scale. Default: 100
   --output OUTPUT       Output image/video path.
 ```
+
+### Prediction examples
+
+I am still tuning training process, dataset generation and model hyper-parameters 
+but at this moment these are any results:
+
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/adrianmarino/object-detection/master/output/never_seen_sample_1.jpg" alt="Sample Image" width="800">
+</p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/adrianmarino/object-detection/master/output/never_seen_sample_2.jpg" alt="Sample Image" width="800">
+</p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/adrianmarino/object-detection/master/output/never_seen_sample_4.jpg" alt="Sample Image" width="800">
+</p>
