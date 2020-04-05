@@ -83,17 +83,17 @@ from Pascal VOC files to integer values. Add next items for each class to `label
 
 ```bash
 item {
-	id: 1
-	name: 'Class1'
+  id: 1
+  name: 'Class1'
 }
 item {
-	id: 2
-	name: 'Class2'
+  id: 2
+  name: 'Class2'
 }
 ...
 item {
-	id: N
-	name: 'ClassN'
+  id: N
+  name: 'ClassN'
 }
 ```
 
