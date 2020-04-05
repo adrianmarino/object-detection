@@ -64,7 +64,7 @@ The dataset must have next structure:
      ....
     sampleN.jpg
     sampleN.xml <---- Pascal VOC file
-./dataset/train/samples
+./dataset/test/samples
     sample1.jpg
     sample1.xml
     ....
