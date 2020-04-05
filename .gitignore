@@ -25,6 +25,6 @@ notebooks/dataset-generation/data/cards
 notebooks/dataset-generation/data/scenes
 notebooks/dataset-generation/data/backgrounds.pck
 notebooks/dataset-generation/data/cards.pck
-
+notebooks/dataset-generation/test/2c/
 
 output.txt
