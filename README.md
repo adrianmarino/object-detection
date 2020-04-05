@@ -79,20 +79,54 @@ item {
 
 **Step 3**: Select a model to train from [Tensorflow detection model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). 
 For example, download [faster_rcnn_inception_resnet_v2_atrous_coco](http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_resnet_v2_atrous_coco_2018_01_28.tar.gz)
-and extract this under as a directory with `training` name.  
+and extract this under as a directory with `training` name.
 
 
-**Step 4**: Generate train.record and test.record files under training path. This files contains
+**Step 4**: Config next properties in `pipeline.config`:
+
+```bash
+train_config {
+  ...
+  fine_tune_checkpoint: "/PATH/TO/training/model.ckpt"
+  ...
+}
+
+train_input_reader {
+  label_map_path: "/PATH/TO/dataset/label_map.pbtxt"
+  tf_record_input_reader {
+    input_path: "/PATH/TO/training/train.record"
+  }
+}
+
+eval_config {
+  ...
+  num_examples: 3000 <= Numer of samples under dataset/test/samples.
+  ...
+}
+
+eval_input_reader {
+  label_map_path: "/PATH/TO/dataset/label_map.pbtxt"
+  ...  
+  tf_record_input_reader {
+    input_path: "/PATH/TO/training/test.record"
+  }
+} 
+```
+
+**Step 5**: Remove `training/checkpoint` file.
+
+
+**Step 6**: Generate train.record and test.record files under training path. This files contains
 all samples data and images. Run next command to perform this task:
 
 ```bash
 bin/prepare-dataset $(pwd)/dataset
 ```
 
-**Step 5**: Read [Configuring the Object Detection Training Pipeline](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/configuring_jobs.md) to understand who to make model tuning.
+**Step 7**: Read [Configuring the Object Detection Training Pipeline](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/configuring_jobs.md) to understand who to make model tuning.
 
  
-**Step 6**: Train model.
+**Step 8**: Train model.
  
 ```bash
 bin/train 500000
@@ -106,7 +140,7 @@ To see training output can use:
 bin/train-output
 ```
 
-**Step 7**: To check the accuracy of model must use mAP, AR and F1 Score metrics. 
+**Step 9**: To check the accuracy of model must use mAP, AR and F1 Score metrics. 
 You can check this from a tensorboard. To run tensorboard:
 
 
@@ -114,10 +148,10 @@ You can check this from a tensorboard. To run tensorboard:
 bin/train-monitor
 ```
 
-**Step 8**: Go to [http://localhost:6006](http://localhost:6006/) url.
+**Step 10**: Go to [http://localhost:6006](http://localhost:6006/) url.
 
 
-**Step 9**: After train model you must export inference graph to `model` directory. Select a checkpoint number from training path:
+**Step 11**: After train model you must export inference graph to `model` directory. Select a checkpoint number from training path:
 
 ```bash
 $ ls -l training/model.ckpt-*.meta
