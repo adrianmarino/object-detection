@@ -3,6 +3,7 @@ import logging
 import numpy as np
 import tensorflow as tf
 
+from lib.stream.reader.image_reader import ImageReader
 from lib.tf_od_api.models.research.object_detection.utils import label_map_util
 from lib.tf_od_api.models.research.object_detection.utils import visualization_utils as vis_util
 
@@ -37,7 +38,13 @@ class Model:
         self.graph = load_inference_graph(inference_graph_path)
         self.__category_index = get_category_index(label_map_path, classes)
 
-    def predict(self, session, frame):
+    def predict_samples(self, samples, min_score=.70):
+        reader = ImageReader(paths=[s.image.path for s in samples])
+        with self.graph.as_default():
+            with tf.compat.v1.Session(graph=self.graph) as session:
+                return [self.predict_frame(session, frame, min_score) for frame in reader]
+
+    def predict_frame(self, session, frame, min_score=.70):
         # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
         image_np_expanded = np.expand_dims(frame.raw, axis=0)
 
@@ -66,7 +73,8 @@ class Model:
             np.squeeze(scores),
             self.__category_index,
             use_normalized_coordinates=True,
-            line_thickness=1,
+            line_thickness=4,
             max_boxes_to_draw=50,
-            min_score_thresh=.25
+            min_score_thresh=min_score
         )
+        return frame

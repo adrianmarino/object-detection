@@ -7,8 +7,8 @@ import tensorflow as tf
 from lib.config import Config
 from lib.prediction.input_params import InputParamsResolver
 from lib.prediction.model import Model
-from lib.stream.reader.image_reader import ImageReader
-from lib.stream.reader.video_reader import assert_video_port_availability, VideoReader
+from lib.stream import ImageReader
+from lib.stream import assert_video_port_availability, VideoReader
 from lib.stream.writer.image_writter import ImageWriter
 from lib.stream.writer.video_writter import VideoWriter
 
@@ -41,7 +41,7 @@ def show(frame):
         cv2.imshow('Object detection', scaled_frame.raw)
 
 
-def create_model(params):
+def create_model(params: object) -> object:
     cfg = Config('./config.yml')
     return Model(
         params['model_path'],

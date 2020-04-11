@@ -1,5 +1,7 @@
 import ntpath
+import os
 
+import IPython
 import cv2
 
 
@@ -22,3 +24,9 @@ class ImageFrame:
         # resize image
         resized_raw = cv2.resize(self.raw, (width, height), interpolation=cv2.INTER_AREA)
         return ImageFrame(resized_raw, width, height, self.path)
+
+    def show(self):
+        filename_extension = os.path.basename(self.path).split('.')[1]
+        _, ret = cv2.imencode(f'.{filename_extension}', self.raw)
+        i = IPython.display.Image(data=ret)
+        IPython.display.display(i)

@@ -203,6 +203,7 @@ https://github.com/tensorflow/models/issues/4778
 * [creating-playing-cards-dataset.ipynb](notebooks/dataset-generation/creating-playing-cards-dataset.ipynb): Create a poker cards dataset using augmentation.
 * [data-aumentation.ipynb](/notebooks/data-augmenter.ipynb): Augment dataset samples using 'DataAugmenter' class, that is an abstraction under [imgaug](https://github.com/aleju/imgaug).
 * [f1-score-metric.ipynb](/notebooks/metrics/f1-score-metric.ipynb): Calculate **F1 SCore** metric useful to check object detection model accuracy.
+* [object-detection.ipynb](/notebooks/object-detection.ipynb): See model predictions.
 
 
 ## Model Prediction
