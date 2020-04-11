@@ -1,7 +1,7 @@
 import imgaug.augmentables as iaa
 import logging
 
-from lib.aug.bb_on_img_factory import BBoxesOnImgFactory
+from lib.aug.bounding_boxes_factory import BoundingBoxesOnImageFactory
 from lib.aug.sample_aug_strategy import SampleAugStrategy
 from lib.dataset.bounding_box import BoundingBox
 
@@ -13,7 +13,7 @@ class IMGAUGSampleAugStrategy(SampleAugStrategy):
         self.logger = logging.getLogger()
 
     def augment(self, img, bboxes):
-        bboxes = BBoxesOnImgFactory.create(img.shape, bboxes)
+        bboxes = BoundingBoxesOnImageFactory.create(img.shape, bboxes)
 
         aug_img, aug_bboxes = self.__sequence(image=img, bounding_boxes=bboxes)
 

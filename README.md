@@ -10,7 +10,7 @@ An object detection tool based on [Tensorflow Object detection API](https://gith
 conda env create --file environment.yml
 ```
 
-**Step 2**: Donwload [Tensorflow Object detection API](https://github.com/tensorflow/models/tree/master/research/object_detection) repository under `lib/tf_od_api` path.
+**Step 2**: Download [Tensorflow Object detection API](https://github.com/tensorflow/models/tree/master/research/object_detection) repository under `lib/tf_od_api` path.
 
 ```bash
 git clone https://github.com/tensorflow/models.git lib/tf_od_api/models
@@ -38,7 +38,7 @@ bin/test-models-installation
 ```
 
 
-## Training
+## Training a model
 
 **Step 1**: First of all must generate a dataset with train(70%) & test(30%) samples. 
 There are many ways to generate a dataset:
@@ -189,6 +189,13 @@ And next run export-inference-graph script:
 bin/export-inference-graph 24494
 ```
 
+
+## Metrics
+
+## Metrics per category
+
+https://stackoverflow.com/questions/51848274/show-per-category-metrics-in-tensorboard
+https://github.com/tensorflow/models/issues/4778
 
 ## Notebooks
 

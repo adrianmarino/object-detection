@@ -31,3 +31,4 @@ dependencies:
         - opencv-contrib-python==4.1.2.30
         - untangle
         - tensorboard
+        - "git+https://github.com/philippschw/cocoapi.git#egg=pycocotools&subdirectory=PythonAPI"
