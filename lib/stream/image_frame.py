@@ -29,4 +29,5 @@ class ImageFrame:
         filename_extension = os.path.basename(self.path).split('.')[1]
         _, ret = cv2.imencode(f'.{filename_extension}', self.raw)
         i = IPython.display.Image(data=ret)
+        print(str(self.path))
         IPython.display.display(i)

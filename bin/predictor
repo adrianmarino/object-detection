@@ -1,4 +1,4 @@
 #!/bin/bash
 source bin/setup-environment
 
-python $LIB_PATH/prediction/predict.py $@
+python "$LIB_PATH"/prediction/predict.py $@

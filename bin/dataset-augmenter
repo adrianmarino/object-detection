@@ -6,4 +6,4 @@ if [ "$PARAMS" -ne 1 ]; then
     PARAMS='--help'
 fi
 
-python $LIB_PATH/aug/script/dataset_augmenter.py $PARAMS
+python "$LIB_PATH"/aug/script/dataset_augmenter.py "$PARAMS"

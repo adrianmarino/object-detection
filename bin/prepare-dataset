@@ -1,19 +1,19 @@
 #!/bin/bash
 source bin/setup-environment
 
-mkdir -p $TRAINING_PATH
+mkdir -p "$TRAINING_PATH"
 
 echo -e "Generate train/test csv samples file..."
-python $LIB_PATH/tf_od_api/script/xml_to_csv.py --dataset-path $DATASET_PATH
+python "$LIB_PATH"/tf_od_api/script/xml_to_csv.py --dataset-path "$DATASET_PATH"
 
 echo -e "\n\nGenerate train.record file...\n\n"
-python $LIB_PATH/tf_od_api/script/generate_tfrecord.py \
-    --csv_input=$TRAIN_DATASET_PATH/train_labels.csv \
-    --image_dir=$TRAIN_DATASET_PATH/samples \
-    --output_path=$TRAINING_PATH/train.record
+python "$LIB_PATH"/tf_od_api/script/generate_tfrecord.py \
+    --csv_input="$TRAIN_DATASET_PATH"/train_labels.csv \
+    --image_dir="$TRAIN_DATASET_PATH"/samples \
+    --output_path="$TRAINING_PATH"/train.record
 
 echo -e "\n\nGenerate test.record file...\n\n"
-python $LIB_PATH/tf_od_api/script/generate_tfrecord.py \
-    --csv_input=$TEST_DATASET_PATH/test_labels.csv \
-    --image_dir=$TEST_DATASET_PATH/samples \
-    --output_path=$TRAINING_PATH/test.record
+python "$LIB_PATH"/tf_od_api/script/generate_tfrecord.py \
+    --csv_input="$TEST_DATASET_PATH"/test_labels.csv \
+    --image_dir="$TEST_DATASET_PATH"/samples \
+    --output_path="$TRAINING_PATH"/test.record

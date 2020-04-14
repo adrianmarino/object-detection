@@ -1,10 +1,10 @@
 #!/bin/bash
 source bin/setup-environment
 
-mkdir -p $MODELS_PATH
+mkdir -p "$MODELS_PATH"
 
-python $RESEARCH_PATH/object_detection/export_inference_graph.py \
+python "$RESEARCH_PATH"/object_detection/export_inference_graph.py \
     --input-type image_tensor \
-    --pipeline_config_path $TRAINING_PATH/pipeline.config \
-    --trained_checkpoint_prefix $TRAINING_PATH/model.ckpt-$1 \
-    --output_directory $MODELS_PATH/inference_graph_$1
+    --pipeline_config_path "$TRAINING_PATH/pipeline.config" \
+    --trained_checkpoint_prefix "$TRAINING_PATH/model.ckpt-$1" \
+    --output_directory "$MODELS_PATH/inference_graph_$1"

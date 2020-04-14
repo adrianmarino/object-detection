@@ -1,4 +1,5 @@
 #!/bin/bash
 source bin/setup-environment
 
-tensorboard --host 0.0.0.0  --logdir=$TRAINING_PATH
+tensorboard --host 0.0.0.0  --logdir="$TRAINING_PATH"
+ss

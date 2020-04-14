@@ -6,7 +6,7 @@ import tensorflow as tf
 from lib.stream.reader.image_reader import ImageReader
 from lib.tf_od_api.models.research.object_detection.utils import label_map_util
 from lib.tf_od_api.models.research.object_detection.utils import visualization_utils as vis_util
-
+from tqdm import tqdm
 
 def load_inference_graph(path):
     logging.info(f'Loading {path} model...')
@@ -39,11 +39,16 @@ class Model:
         self.__category_index = get_category_index(label_map_path, classes)
 
     def predict_samples(self, samples, min_score=.70):
+        results = []
         reader = ImageReader(paths=[s.image.path for s in samples])
         with self.graph.as_default():
             with tf.compat.v1.Session(graph=self.graph) as session:
-                return [self.predict_frame(session, frame, min_score) for frame in reader]
-
+                with tqdm(total=len(samples), position=0, leave=True, unit='f') as pbar:                    
+                    for frame in reader:
+                        results.append(self.predict_frame(session, frame, min_score))
+                        pbar.update(1)
+        return results
+                
     def predict_frame(self, session, frame, min_score=.70):
         # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
         image_np_expanded = np.expand_dims(frame.raw, axis=0)
