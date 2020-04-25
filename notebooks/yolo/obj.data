@@ -1,0 +1,5 @@
+classes = 52
+train = dataset/train/cards.name
+valid = dataset/test/cards.name
+names = obj.names
+backup = backup/
